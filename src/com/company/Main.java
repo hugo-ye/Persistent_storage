@@ -12,18 +12,18 @@ public class Main {
         for (int i = 0; i < 10000; i++) {
             list.add(i);
         }
-        homework1b(list);
+        homework1a(list);
 
     }
 
-    public static void homework1a(List list) {
+    public static void homework1a(List<Integer> list) {
 
         String fname = "data/textFile.txt";
         File file = new File(fname);
-        if (file.exists()) {
-            try (PrintWriter out = new PrintWriter(new File(fname))) {
-                for (int i = 0; i < list.size(); i++) {
-                    out.printf("%d ", i);
+        if (!file.exists()) {
+            try (PrintWriter out = new PrintWriter(fname)) {
+                for (Integer integer : list) {
+                    out.printf("%d ", integer);
                 }
 
             } catch (Exception e) {
@@ -46,7 +46,7 @@ public class Main {
     public static void homework1b(List list) {
         String fname = "data/serious.ser";
         File file = new File(fname);
-        if (file.exists()) {
+        if (!file.exists()) {
             try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fname))) {
                 out.writeObject(list);
             } catch (Exception e) {
@@ -59,5 +59,33 @@ public class Main {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+     /*
+    CREATE TABLE movie (
+            id int PRIMARY KEY,
+            name nvarchar(100) NOT NULL,
+    yearOP int NOT NULL,
+    director nvarchar(100) NOT NULL REFERENCES director(id)
+            );
+
+    CREATE TABLE director (
+            id int PRIMARY KEY,
+            firstname nvarchar(100) NOT NULL,
+    lastname nvarchar(100) NOT NULL
+);
+
+    INSERT INTO movie (id, name, yearOP, director) VALUES
+  (1, 'Jurrassic park', 1993, 1),
+          (2, 'Interstellar', 2014, 2),
+          (3, 'Inglorious Bastards', 2009, 3);
+
+
+    INSERT INTO director (id, firstname, lastname) VALUES
+  (1, "Steven", "Spielberg"),
+          (2, "Christopher", "Nolan"),
+          (3, "Quentin", "Tarantino");
+*/
+
+    public static void homework3() {
     }
 }
